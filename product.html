@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Product — ApexPlanet</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f8f9fa;
+        color: #333;
+      }
+      .site-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background: #2b6777;
+        color: #fff;
+      }
+      .brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #fff;
+      }
+      .cart-link {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+      }
+      .container {
+        max-width: 800px;
+        margin: 1.5rem auto;
+        padding: 1rem;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .product-detail {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .product-detail img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+      .btn {
+        padding: 0.7rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btn-cart {
+        background: #2b6777;
+        color: #fff;
+      }
+      .btn:hover {
+        opacity: 0.9;
+      }
+      @media (min-width: 700px) {
+        .product-detail {
+          flex-direction: row;
+          text-align: left;
+          gap: 2rem;
+        }
+        .product-detail img {
+          width: 350px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">ApexPlanet</a>
+      <a href="cart.html" class="cart-link"
+        >Cart (<span id="cart-count">0</span>)</a
+      >
+    </header>
+
+    <main class="container">
+      <div id="product-root"></div>
+    </main>
+
+    <script>
+      const products = [
+        {
+          id: 1,
+          name: "Classic White T-Shirt",
+          category: "clothes",
+          price: 399,
+          rating: 4.5,
+          image: "./assets/images/p1.jpg",
+        },
+        {
+          id: 2,
+          name: "Adidas Running Shoes",
+          category: "shoes",
+          price: 1999,
+          rating: 4.7,
+          image: "./assets/images/p2.jpg",
+        },
+        {
+          id: 3,
+          name: "Stylish Leather Wallet",
+          category: "accessories",
+          price: 799,
+          rating: 4.3,
+          image: "./assets/images/p3.jpg",
+        },
+        {
+          id: 4,
+          name: "Denim Jacket",
+          category: "clothes",
+          price: 1299,
+          rating: 4.6,
+          image: "./assets/images/p4.jpg",
+        },
+        {
+          id: 5,
+          name: "Socks - Pack of 5",
+          category: "shoes",
+          price: 499,
+          rating: 4.1,
+          image: "./assets/images/p5.jpg",
+        },
+        {
+          id: 6,
+          name: "Canvas Shoes",
+          category: "shoes",
+          price: 1599,
+          rating: 4.2,
+          image: "./assets/images/p6.jpg",
+        },
+      ];
+
+      function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let total = cart.reduce((sum, i) => sum + i.qty, 0);
+        document.getElementById("cart-count").textContent = total;
+      }
+
+      function addToCart(id) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let existing = cart.find((item) => item.id === id);
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          let prod = products.find((p) => p.id === id);
+          cart.push({ ...prod, qty: 1 });
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+        alert("Added to cart!");
+      }
+
+      const productId = localStorage.getItem("selectedProduct");
+      const product = products.find((p) => p.id == productId);
+
+      if (product) {
+        document.getElementById("product-root").innerHTML = `
+        <div class="product-detail">
+          <img src="${product.image}" alt="${product.name}">
+          <div>
+            <h2>${product.name}</h2>
+            <p>Category: ${product.category}</p>
+            <p>⭐ ${product.rating}</p>
+            <p style="font-size:20px;font-weight:bold;color:#2b6777;">₹${product.price}</p>
+            <button class="btn btn-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+          </div>
+        </div>
+      `;
+      } else {
+        document.getElementById("product-root").innerHTML =
+          "<p>No product found.</p>";
+      }
+
+      updateCartCount();
+    </script>
+  </body>
+</html>

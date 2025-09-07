@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Classic White T-Shirt",
+    "category": "clothes",
+    "price": 399,
+    "rating": 4.5,
+    "image": "assets/images/p1.jpg",
+    "description": "Comfortable cotton t-shirt."
+  },
+  {
+    "id": 2,
+    "title": "Running Sneakers",
+    "category": "shoes",
+    "price": 1999,
+    "rating": 4.7,
+    "image": "assets/images/p2.jpg",
+    "description": "Lightweight and breathable."
+  },
+  {
+    "id": 3,
+    "title": "Leather Wallet",
+    "category": "accessories",
+    "price": 799,
+    "rating": 4.3,
+    "image": "assets/images/p3.jpg",
+    "description": "Handcrafted genuine leather."
+  },
+  {
+    "id": 4,
+    "title": "Denim Jacket",
+    "category": "clothes",
+    "price": 2499,
+    "rating": 4.6,
+    "image": "assets/images/p4.jpg",
+    "description": "Classic fit denim jacket."
+  },
+  {
+    "id": 5,
+    "title": "Sport Socks (5 pack)",
+    "category": "accessories",
+    "price": 299,
+    "rating": 4.1,
+    "image": "assets/images/p5.jpg",
+    "description": "Comfortable ankle socks."
+  },
+  {
+    "id": 6,
+    "title": "Canvas Slip-ons",
+    "category": "shoes",
+    "price": 1499,
+    "rating": 4.2,
+    "image": "assets/images/p6.jpg",
+    "description": "Easy on/off canvas shoes."
+  }
+]
